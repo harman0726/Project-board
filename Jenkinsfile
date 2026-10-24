@@ -19,6 +19,18 @@ pipeline {
             }
         }
         
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQube-Project5') {
+            sh '''
+                mvn sonar:sonar \
+                  -Dsonar.projectKey=project-board \
+                  -Dsonar.projectName=Project-board
+            '''
+        }
+    }
+}
+
         stage('Build') {
             steps {
                 sh 'mvn package'
