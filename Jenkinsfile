@@ -45,7 +45,7 @@ withSonarQubeEnv('SonarQube-Project5') {
                       --scanners vuln \
                       --exit-code 1 \
                       --severity HIGH,CRITICAL \
-                      target/database_service_project-0.0.5-SNAPSHOT.jar
+                      .
                 '''
             }
         }
