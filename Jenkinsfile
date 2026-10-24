@@ -38,5 +38,17 @@ withSonarQubeEnv('SonarQube-Project5') {
                 sh 'mvn package'
             }
         }
+        stage('Trivy Filesystem Scan') {
+            steps {
+                sh '''
+                    trivy fs \
+                      --scanners vuln \
+                      --exit-code 1 \
+                      --severity HIGH,CRITICAL \
+                      .
+                '''
+            }
+        }
     }
 }
+    
