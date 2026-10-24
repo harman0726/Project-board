@@ -21,13 +21,15 @@ pipeline {
         
 stage('SonarQube Analysis') {
     steps {
-        withSonarQubeEnv('SonarQube-Project5') {
-            sh '''
-                mvn sonar:sonar \
-                  -Dsonar.projectKey=project-board \
-                  -Dsonar.projectName=Project-board
-            '''
-        }
+        
+withSonarQubeEnv('SonarQube-Project5') {
+    sh '''
+        mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:5.2.0.4988:sonar \
+          -Dsonar.projectKey=project-board \
+          -Dsonar.projectName=Project-board
+    '''
+}
+
     }
 }
 
