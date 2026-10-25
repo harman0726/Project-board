@@ -1,2 +1,19 @@
-# SnakeYAML 2.0 is incompatible with Spring Boot 2.7; app does not parse untrusted YAML
+# No fix available for the Spring Boot 2.7 / Spring 5.3 line.
+# Fixes exist only in Spring Boot 3 / Spring 6, or in commercial-only 5.x releases.
 CVE-2022-1471
+CVE-2016-1000027
+CVE-2024-22257
+CVE-2024-38816
+CVE-2024-38819
+CVE-2024-38821
+CVE-2025-22228
+CVE-2025-22235
+CVE-2025-41249
+CVE-2026-22732
+CVE-2026-40973
+CVE-2026-41716
+CVE-2026-41842
+CVE-2026-41845
+CVE-2026-41849
+CVE-2026-41850
+CVE-2026-47884
