@@ -14,6 +14,7 @@
 	<name>database_service_project</name>
 	<description>Project for Spring Boot</description>
 	<packaging>jar</packaging>
+
 	<properties>
     <java.version>11</java.version>
     <jacoco.version>0.8.13</jacoco.version>
@@ -25,9 +26,13 @@
     <logback.version>1.2.13</logback.version>
     <thymeleaf.version>3.1.5.RELEASE</thymeleaf.version>
     <thymeleaf-extras-springsecurity.version>3.1.2.RELEASE</thymeleaf-extras-springsecurity.version>
-    <jackson-bom.version>2.18.8</jackson-bom.version>
+    <jackson-bom.version>2.18.11</jackson-bom.version>
+    <tomcat.version>9.0.121</tomcat.version>
+    <snakeyaml.version>1.33</snakeyaml.version>
+    <h2.version>2.2.220</h2.version>
+    <spring-framework.version>5.3.39</spring-framework.version>
 </properties>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
