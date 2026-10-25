@@ -1,1 +1,2 @@
-
+# SnakeYAML 2.0 is incompatible with Spring Boot 2.7; app does not parse untrusted YAML
+CVE-2022-1471
