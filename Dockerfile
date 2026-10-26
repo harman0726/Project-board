@@ -16,7 +16,14 @@ RUN mvn clean package -DskipTests
 
 # ===== Runtime Stage =====
 FROM eclipse-temurin:17-jre-alpine
+USER root
+RUN apk update && apk upgrade --no-cache brotli-libs
 WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # Copy built jar from build stage
 COPY --from=build /app/target/*.jar app.jar
