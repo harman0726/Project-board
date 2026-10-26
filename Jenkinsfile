@@ -47,10 +47,24 @@ stage('Publish to Nexus') {
             passwordVariable: 'NEXUS_PASS'
         )]) {
             sh '''
-                mvn deploy \
-                  -DskipTests \
-                  -Dnexus.username="$NEXUS_USER" \
-                  -Dnexus.password="$NEXUS_PASS"
+                set +x
+                SETTINGS_FILE=$(mktemp)
+
+                trap 'rm -f "$SETTINGS_FILE"' EXIT
+
+                cat > "$SETTINGS_FILE" <<EOF
+<settings>
+  <servers>
+    <server>
+      <id>maven-releases</id>
+      <username>${NEXUS_USER}</username>
+      <password>${NEXUS_PASS}</password>
+    </server>
+  </servers>
+</settings>
+EOF
+
+                mvn deploy -DskipTests -s "$SETTINGS_FILE"
             '''
         }
     }
