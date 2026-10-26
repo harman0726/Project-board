@@ -85,3 +85,45 @@ EOF
     }
 }
     
+stage('Build Docker Image') {
+    steps {
+        sh '''
+            docker build -t harman1702/project-board:${BUILD_NUMBER} .
+            docker tag harman1702/project-board:${BUILD_NUMBER} \
+                harman1702/project-board:latest
+        '''
+    }
+}
+
+stage('Trivy Docker Image Scan') {
+    steps {
+        sh '''
+            trivy image \
+              --exit-code 1 \
+              --severity HIGH,CRITICAL \
+              harman1702/project-board:${BUILD_NUMBER}
+        '''
+    }
+}
+
+stage('Push to Docker Hub') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub-credentials',
+            usernameVariable: 'DOCKERHUB_USER',
+            passwordVariable: 'DOCKERHUB_TOKEN'
+        )]) {
+            sh '''
+                set +x
+                echo "$DOCKERHUB_TOKEN" | docker login \
+                    -u "$DOCKERHUB_USER" --password-stdin
+
+                docker push harman1702/project-board:${BUILD_NUMBER}
+                docker push harman1702/project-board:latest
+
+                docker logout
+            '''
+        }
+    }
+}
+
