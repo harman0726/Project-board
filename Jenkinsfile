@@ -38,6 +38,25 @@ withSonarQubeEnv('SonarQube-Project5') {
                 sh 'mvn package'
             }
         }
+
+stage('Publish to Nexus') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'nexus-credentials',
+            usernameVariable: 'NEXUS_USER',
+            passwordVariable: 'NEXUS_PASS'
+        )]) {
+            sh '''
+                mvn deploy \
+                  -DskipTests \
+                  -Dnexus.username="$NEXUS_USER" \
+                  -Dnexus.password="$NEXUS_PASS"
+            '''
+        }
+    }
+}
+
+        
         stage('Trivy Filesystem Scan') {
             steps {
                 sh '''
