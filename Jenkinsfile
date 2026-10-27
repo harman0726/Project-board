@@ -132,7 +132,7 @@ EOF
     post {
         success {
             emailext(
-                to: 'ayanharman07@gmail.com',
+                to: 'harmanpreetsaini1001@gmail.com',
                 subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """Build succeeded!
 
@@ -143,7 +143,7 @@ Details: ${env.BUILD_URL}"""
         }
         failure {
             emailext(
-                to: 'ayanharman07@gmail.com',
+                to: 'harmanpreetsaini1001@gmail.com',
                 subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """Build failed.
 
