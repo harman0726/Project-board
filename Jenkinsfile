@@ -106,6 +106,7 @@ EOF
             }
         }
 
+        
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(
@@ -125,9 +126,7 @@ EOF
                     '''
                 }
             }
-    
         }
-        
     }
 
     post {
@@ -154,4 +153,3 @@ ${env.BUILD_URL}console"""
         }
     }
 }
-
