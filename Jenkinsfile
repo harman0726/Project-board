@@ -129,27 +129,66 @@ EOF
         }
     }
 
-    post {
-        success {
-            emailext(
-                to: 'harmanpreetsaini1001@gmail.com',
-                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """Build succeeded!
+    
+
+post {
+    success {
+        emailext(
+            to: 'harmanpreetsaini1001@gmail.com',
+            subject: "Pipeline SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            mimeType: 'text/html',
+            attachmentsPattern: 'trivy-fs-report.txt,trivy-image-report.txt',
+            body: """
+                <html>
+                <body style="font-family: Arial, sans-serif; color: #333;">
+
+                    <h2 style="color: #188038;">&#10004; Pipeline SUCCESS</h2>
+
+                    <p>Your Jenkins pipeline completed successfully.</p>
+
+                    <table cellpadding="8" cellspacing="0"
+                           style="border-collapse: collapse; border: 1px solid #ddd;">
+                        <tr>
+                            <td><b>Job</b></td>
+                            <td>${env.JOB_NAME}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Build Number</b></td>
+                            <td>${env.BUILD_NUMBER}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Build Status</b></td>
+                            <td style="color: #188038;"><b>SUCCESS</b></td>
+                        </tr>
+                    </table>
+
+                    <p>Trivy filesystem and Docker image scan reports are attached when generated.</p>
+
+                    <p>
+                        <a href="${env.BUILD_URL}">View Jenkins Build</a>
+                    </p>
+
+                    <p style="color: #666; font-size: 12px;">
+                        Automated notification from Project 5 CI/CD.
+                    </p>
+
+                </body>
+                </html>
+            """
+        )
+    }
+
+    failure {
+        emailext(
+            to: 'harmanpreetsaini1001@gmail.com',
+            subject: "Pipeline FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: """Pipeline failed.
 
 Job: ${env.JOB_NAME}
 Build: ${env.BUILD_NUMBER}
-Details: ${env.BUILD_URL}"""
-            )
-        }
-        failure {
-            emailext(
-                to: 'harmanpreetsaini1001@gmail.com',
-                subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """Build failed.
 
-Please check the Jenkins console output:
+Console output:
 ${env.BUILD_URL}console"""
-            )
-        }
+        )
     }
 }
