@@ -125,6 +125,33 @@ EOF
                     '''
                 }
             }
+    
+        }
+        
+    }
+
+    post {
+        success {
+            emailext(
+                to: 'ayanharman07@gmail.com',
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Build succeeded!
+
+Job: ${env.JOB_NAME}
+Build: ${env.BUILD_NUMBER}
+Details: ${env.BUILD_URL}"""
+            )
+        }
+        failure {
+            emailext(
+                to: 'ayanharman07@gmail.com',
+                subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """Build failed.
+
+Please check the Jenkins console output:
+${env.BUILD_URL}console"""
+            )
         }
     }
 }
+
