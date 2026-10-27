@@ -76,11 +76,7 @@ EOF
         stage('Trivy Filesystem Scan') {
             steps {
                 sh '''
-                    trivy fs \
-                      --scanners vuln \
-                      --exit-code 1 \
-                      --severity HIGH,CRITICAL \
-                      .
+                    trivy fs --scanners vuln --exit-code 1 --severity HIGH,CRITICAL --format table --output trivy-fs-report.txt .
                 '''
             }
         }
@@ -98,10 +94,7 @@ EOF
         stage('Trivy Docker Image Scan') {
             steps {
                 sh '''
-                    trivy image \
-                      --exit-code 1 \
-                      --severity HIGH,CRITICAL \
-                      harman1702/project-board:${BUILD_NUMBER}
+                   trivy image --exit-code 1 --severity HIGH,CRITICAL --format table --output trivy-image-report.txt harman1702/project-board:${BUILD_NUMBER}
                 '''
             }
         }
@@ -191,4 +184,5 @@ Console output:
 ${env.BUILD_URL}console"""
         )
     }
+}
 }
