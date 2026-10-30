@@ -94,8 +94,7 @@ A Grafana test notification was successfully received in the `#all-aws-devops-mo
 
 - **Application:** Boardgame Listing Web Application
 - **Deployment platform:** Self-managed Kubernetes on AWS EC2
-- **Application URL:** Add the verified application URL here.
-
+- **Application URL:** https://kaurinsurance4u.com 
 The URL and availability depend on the configured application access method and whether the AWS resources are running.
 
 ## 10. Repository Contents
@@ -109,7 +108,7 @@ The URL and availability depend on the configured application access method and 
 - `.trivyignore` — Trivy scan exclusions, if configured
 
 Additional architecture diagrams, implementation documentation, and screenshots can be stored in the corresponding folders.
-## 13. Project Implementation Screenshots
+## 11. Project Implementation Screenshots
 
 ### Jenkins CI/CD Pipeline
 ![Jenkins Pipeline Success](screenshots/jenkins-pipeline-success.png)
@@ -135,7 +134,7 @@ Additional architecture diagrams, implementation documentation, and screenshots 
 ### Slack Alert Notification
 ![Slack Notification](screenshots/slack-notification.png)
 
-## 11. Key Learning Outcomes
+## 12. Key Learning Outcomes
 
 - CI/CD pipeline automation using Jenkins
 - Java application builds using Maven
@@ -147,7 +146,7 @@ Additional architecture diagrams, implementation documentation, and screenshots 
 - Prometheus and Grafana monitoring
 - Slack alert notification integration
 
-## 12. Conclusion
+## 13. Conclusion
 
 This project demonstrates the integration of DevSecOps practices across application delivery, security scanning, container deployment, and monitoring. It provided practical experience with CI/CD automation, Kubernetes administration, AWS EC2 infrastructure, and monitoring notifications.
 
