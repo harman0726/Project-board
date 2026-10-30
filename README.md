@@ -109,6 +109,31 @@ The URL and availability depend on the configured application access method and 
 - `.trivyignore` — Trivy scan exclusions, if configured
 
 Additional architecture diagrams, implementation documentation, and screenshots can be stored in the corresponding folders.
+## 13. Project Implementation Screenshots
+
+### Jenkins CI/CD Pipeline
+![Jenkins Pipeline Success](screenshots/jenkins-pipeline-success.png)
+
+### SonarQube Code Quality Analysis
+![SonarQube Analysis](screenshots/sonarqube-analysis.png)
+
+### Trivy Security Scan
+![Trivy Security Scan](screenshots/trivy-scan-results.png)
+
+### Nexus Repository Manager
+![Nexus Artifacts](screenshots/nexus-artifacts.png)
+
+### Docker Hub Container Image
+![Docker Hub Image](screenshots/dockerhub-image.png)
+
+### Kubernetes Nodes and Application Pods
+![Kubernetes Deployment](screenshots/kubernetes-nodes-pods.png)
+
+### Grafana Monitoring Dashboard
+![Grafana Dashboard](screenshots/grafana-dashboard.png)
+
+### Slack Alert Notification
+![Slack Notification](screenshots/slack-notification.png)
 
 ## 11. Key Learning Outcomes
 
